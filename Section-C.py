@@ -95,6 +95,10 @@ if run_model1:
     price1_0 = n1.buses_t.marginal_price.DK1.mean()
     
     price1_1 = n1.objective/n1.loads_t.p.DK1_Load.sum()
+    
+    # Result dataframe
+    results1 = pd.DataFrame(data = [n1.generators.p_nom_opt["DK1_wind"], price1],
+                            index = ['Wind p_nom_opt', 'DK1 marginal_price'])
 
 #%% 2 - DK2 Model
 
@@ -137,6 +141,10 @@ if run_model2:
     price2_0 = n2.buses_t.marginal_price.DK2.mean()
     
     price2_1 = n2.objective/n2.loads_t.p.DK2_Load.sum()
+    
+    # Result dataframe
+    results2 = pd.DataFrame(data = [n2.generators.p_nom_opt["DK2_PV"], price2],
+                            index = ['Solar p_nom_opt', 'DK2 marginal_price'])
     
 
 #%% 3 - DK1 + DK2 Model
@@ -201,6 +209,15 @@ if run_model3:
     price3_0_DK1 = n3.buses_t.marginal_price.DK1.mean()
     price3_0_DK2 = n3.buses_t.marginal_price.DK2.mean()
 
+    results3 = pd.DataFrame(data = [n3.generators.p_nom_opt["DK1_wind"], 
+                                    n3.generators.p_nom_opt["DK2_PV"],
+                                    n3.links.p_nom_opt["DK1-DK2_link"],
+                                    price3_DK1, price3_DK2],
+                            index = ['Wind p_nom_opt',
+                                     'Solar p_nom_opt',
+                                     'Link p_nom_opt',
+                                     'DK1 marginal_price',
+                                     'DK2 marginal_price'])
 
 
 
