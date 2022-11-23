@@ -58,7 +58,9 @@ ccost_link  = annuity(30, 0.07) * 400*link_length * 5/8760
 
 if run_model1:
     n1 = pypsa.Network() #Create Network
-    n1.set_snapshots([1, 2, 3, 4, 5])
+    t1 = pd.date_range('2022-01-01 00:00', '2022-01-01 04:00', freq = 'H')
+    n1.set_snapshots(t1)
+    
     n1.add("Bus",  "DK1") #Add DK1 bus
     
     #Add 2GW constant load
@@ -98,7 +100,9 @@ if run_model1:
 
 if run_model2:
     n2 = pypsa.Network()
-    n2.set_snapshots([1, 2, 3, 4, 5])
+    t2 = pd.date_range('2022-01-01 00:00', '2022-01-01 04:00', freq = 'H')
+    n2.set_snapshots(t1)
+    
     n2.add("Bus",  "DK2") #Add DK1 bus
     
     #Add 2GW constant load
@@ -139,7 +143,9 @@ if run_model2:
 
 if run_model3:
     n3 = pypsa.Network()
-    n3.set_snapshots([1, 2, 3, 4, 5])
+    t3 = pd.date_range('2022-01-01 00:00', '2022-01-01 04:00', freq = 'H')
+    n3.set_snapshots(t1)
+    
     n3.madd("Bus",   ["DK1", "DK2"]) #Add DK1 and DK2 buses
     
     #Add constant loads of 2GW on each bus ----------------
